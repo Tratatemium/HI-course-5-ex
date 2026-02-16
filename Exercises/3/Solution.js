@@ -144,11 +144,10 @@ const people = [
 const peopleGroupedByCity = people.reduce((group, person) => {
     group[person.city] = group[person.city] || [];
     group[person.city].push(person.name);
-    return group
+    return group;
 }, {});
 console.log('==========================\n');
 console.log(JSON.stringify(peopleGroupedByCity).replace(/:/g, ': ').replace(/,/g, ', ') + '\n');
-
 
 // Get Last N Elements
 // Write a function that returns the last n elements of an array using `slice()`.
@@ -162,11 +161,42 @@ console.log(getLastN([1, 2, 3, 4, 5], 3)); // [3, 4, 5]
 console.log(getLastN([1, 2, 3, 4, 5], 2)); // [4, 5]
 console.log();
 
-
 // Remove and Insert
 // Use `splice()` to remove 2 elements starting at index 1 and replace them with 'x' and 'y'.
 
 const letters = ['a', 'b', 'c', 'd', 'e'];
 letters.splice(1, 2, 'x', 'y');
 printArray(letters);
-// Expected: ['a', 'x', 'y', 'd', 'e']
+
+
+// Chain filter and map
+// Given an array of numbers, get the squares of all even numbers.
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const squareOfEven = numbers.filter(num => num % 2 === 0).map(num => num * num);
+printArray(squareOfEven);
+
+
+// Complete Data Pipeline
+// Given an array of orders, calculate the total revenue from completed orders only.
+
+// Requirements:
+// 1. Filter to only completed orders
+// 2. Extract the total price from each order
+// 3. Sum up all the prices
+
+const orders = [
+    { id: 1, status: 'completed', total: 100 },
+    { id: 2, status: 'pending', total: 200 },
+    { id: 3, status: 'completed', total: 150 },
+    { id: 4, status: 'cancelled', total: 75 },
+    { id: 5, status: 'completed', total: 300 },
+];
+const revenue = orders
+    .filter(order => order.status === 'completed')
+    .map(order => order.total)
+    .reduce((sum, total) => sum + total, 0);
+console.log('==========================\n');
+console.log(`daily revenue = ${revenue}\n`);
+
+// Expected output: 550
