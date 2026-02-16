@@ -168,14 +168,12 @@ const letters = ['a', 'b', 'c', 'd', 'e'];
 letters.splice(1, 2, 'x', 'y');
 printArray(letters);
 
-
 // Chain filter and map
 // Given an array of numbers, get the squares of all even numbers.
 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const squareOfEven = numbers.filter(num => num % 2 === 0).map(num => num * num);
 printArray(squareOfEven);
-
 
 // Complete Data Pipeline
 // Given an array of orders, calculate the total revenue from completed orders only.
@@ -199,4 +197,31 @@ const revenue = orders
 console.log('==========================\n');
 console.log(`daily revenue = ${revenue}\n`);
 
-// Expected output: 550
+// Remove Duplicates
+// Write a function that removes duplicate values from an array.
+function removeDuplicatesFast(arr) {
+    return [...new Set(arr)];
+}
+function removeDuplicates(arr) {
+    return arr.filter((el, i) => !arr.slice(i + 1).includes(el));
+}
+function removeDuplicatesAlt(arr) {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+}
+
+console.log('==========================\n');
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5])); // [1, 2, 3, 4, 5]
+console.log(removeDuplicates(['a', 'b', 'a', 'c', 'b'])); // ['a', 'b', 'c']
+console.log();
+
+// Find Missing Items
+// Given two arrays, find all items that are in the first array but not in the second.
+
+function findMissing(arr1, arr2) {
+    return arr1.filter(el => !arr2.includes(el));
+}
+
+const required = ['passport', 'ticket', 'visa', 'insurance'];
+const packed = ['ticket', 'passport'];
+
+console.log(findMissing(required, packed)); // ['visa', 'insurance']
