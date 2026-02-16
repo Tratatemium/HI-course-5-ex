@@ -2,22 +2,23 @@ function printArray(arr) {
     console.log('==========================\n');
 
     if (!Array.isArray(arr)) {
-        console.log("Not an array");
+        console.log('Not an array');
         return;
     }
 
     const isArrayOfObjects = arr.every(
-        item => typeof item === "object" && item !== null && !Array.isArray(item)
+        item => typeof item === 'object' && item !== null && !Array.isArray(item),
     );
 
     if (isArrayOfObjects) {
         const result = arr
-            .map(obj => "  " + JSON.stringify(obj).replace(/:/g, ": ").replace(/,/g, ", "))
-            .join(",\n");
+            .map(obj => '  ' + JSON.stringify(obj).replace(/:/g, ': ').replace(/,/g, ', '))
+            .join(',\n');
 
-        console.log(`[\n${result}\n]`);
+        console.log(`[\n${result}\n]\n`);
     } else {
-        console.log(`[ ${arr.join(", ")} ]`);
+        console.log(arr);
+        console.log();
     }
 }
 
@@ -83,5 +84,89 @@ users = [
 const filtered = users.filter(user => user.age >= 18 && user.active);
 printArray(filtered);
 
-// Your code here
-// Expected output: [{ name: 'Alice', ... }, { name: 'Diana', ... }]
+// Сheck Membership
+// Given an array of allowed roles, check if a user's role is allowed.
+
+const allowedRoles = ['admin', 'moderator', 'editor'];
+const userRole = 'moderator';
+const isUserAllowed = allowedRoles.includes(userRole);
+console.log('==========================\n');
+console.log(`${userRole} ${isUserAllowed ? 'allowed' : 'not allowed'}\n`);
+
+// Position
+// Given an array of colors, find the position of 'blue'.
+
+const colors = ['red', 'green', 'blue', 'yellow'];
+const colorOfInterest = 'blue';
+const position = colors.indexOf(colorOfInterest);
+const output =
+    position > 0 ? `${colorOfInterest} position is ${position}\n` : `there is no color ${colorOfInterest}\n`;
+console.log('==========================\n');
+console.log(output);
+
+// Sum of Numbers
+// Given an array of numbers, use `reduce()` to calculate the sum.
+
+numbers = [10, 20, 30, 40, 50];
+const sum = numbers.reduce((sum, num) => sum + num, 0);
+console.log('==========================\n');
+console.log(`array sum = ${sum}\n`);
+
+// Find Maximum Value
+// Given an array of numbers, use `reduce()` to find the maximum value.
+
+numbers = [23, 45, 12, 67, 34, 89, 21];
+const max = numbers.reduce((max, num) => (num > max ? num : max), numbers[0]);
+console.log('==========================\n');
+console.log(`array max = ${max}\n`);
+
+// Count Occurrences
+// Given an array of strings, use `reduce()` to count how many times each string appears.
+
+const fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
+const freq = fruits.reduce((count, fruit) => {
+    count[fruit] = (count[fruit] || 0) + 1;
+    return count;
+}, {});
+console.log('==========================\n');
+console.log(JSON.stringify(freq).replace(/:/g, ': ').replace(/,/g, ', ') + '\n');
+
+// Group by Property
+// Given an array of people, use `reduce()` to group them by their city.
+
+const people = [
+    { name: 'Alice', city: 'New York' },
+    { name: 'Bob', city: 'London' },
+    { name: 'Charlie', city: 'New York' },
+    { name: 'Diana', city: 'London' },
+];
+
+const peopleGroupedByCity = people.reduce((group, person) => {
+    group[person.city] = group[person.city] || [];
+    group[person.city].push(person.name);
+    return group
+}, {});
+console.log('==========================\n');
+console.log(JSON.stringify(peopleGroupedByCity).replace(/:/g, ': ').replace(/,/g, ', ') + '\n');
+
+
+// Get Last N Elements
+// Write a function that returns the last n elements of an array using `slice()`.
+
+function getLastN(arr, n) {
+    return arr.slice(-n);
+}
+
+console.log('==========================\n');
+console.log(getLastN([1, 2, 3, 4, 5], 3)); // [3, 4, 5]
+console.log(getLastN([1, 2, 3, 4, 5], 2)); // [4, 5]
+console.log();
+
+
+// Remove and Insert
+// Use `splice()` to remove 2 elements starting at index 1 and replace them with 'x' and 'y'.
+
+const letters = ['a', 'b', 'c', 'd', 'e'];
+letters.splice(1, 2, 'x', 'y');
+printArray(letters);
+// Expected: ['a', 'x', 'y', 'd', 'e']
