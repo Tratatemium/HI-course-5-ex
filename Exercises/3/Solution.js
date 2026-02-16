@@ -197,16 +197,15 @@ const revenue = orders
 console.log('==========================\n');
 console.log(`daily revenue = ${revenue}\n`);
 
+
 // Remove Duplicates
 // Write a function that removes duplicate values from an array.
+
 function removeDuplicatesFast(arr) {
     return [...new Set(arr)];
 }
 function removeDuplicates(arr) {
     return arr.filter((el, i) => !arr.slice(i + 1).includes(el));
-}
-function removeDuplicatesAlt(arr) {
-    return arr.filter((item, index) => arr.indexOf(item) === index);
 }
 
 console.log('==========================\n');
